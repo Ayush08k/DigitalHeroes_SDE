@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PagePulse - Task B: System Architecture for Scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #334155;
+      --accent-color: #38bdf8;
+      --accent-hover: #0284c7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #475569;
+      --font-family: 'Inter', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+    }
+    header h1 {
+      font-size: 2.25rem;
+      color: var(--accent-color);
+    }
+    header p {
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-color);
+    }
+    .card h3 {
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .diagram-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    .diagram-section h2 {
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+    }
+    .footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .credit-line {
+      margin-top: 0.5rem;
+    }
+    .credit-line a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .credit-line a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>PagePulse — Task B: Design for Scale</h1>
+      <p>Architecture specification for 10,000+ daily audits & 500 concurrent request bursts</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🏛️ Scalable Architecture</h3>
+        <p>Decoupled Load Balancer, Redis Cluster rate limiting, and BullMQ worker pool for high availability.</p>
+      </div>
+      <div class="card">
+        <h3>⚖️ Technology Decision Record</h3>
+        <p>Justified choices for Redis, PostgreSQL, and Node.js vs rejected alternatives like Kafka and SQS.</p>
+      </div>
+      <div class="card">
+        <h3>🛡️ Failure Mode Analysis</h3>
+        <p>Mitigation for Target Slowdown, Cache Stampedes, and Queue Overflows via Circuit Breakers and Redlock.</p>
+      </div>
+      <div class="card">
+        <h3>📊 Observability & Rollbacks</h3>
+        <p>Four golden signals tracking p95 latency, error rates, and automated Canary deployment rollbacks.</p>
+      </div>
+    </div>
+
+    <div class="diagram-section">
+      <h2>High-Throughput Architecture Flow</h2>
+      <pre class="mermaid">
+        flowchart TD
+          Client[Client Applications] --> ALB[Load Balancer / NGINX]
+          ALB --> RL[Redis Rate Limiter]
+          RL --> API[API Microservices]
+          API -->|Fast Path| Cache[(Redis Cache Cluster)]
+          API -->|Async Burst| Queue[[BullMQ Task Queue]]
+          Queue --> Workers[Audit Worker Pool]
+          Workers --> External[External Web Targets]
+          Workers --> Cache
+          Workers --> DB[(PostgreSQL Store)]
+      </pre>
+    </div>
+
+    <footer class="footer">
+      <p>Task B System Architecture Portal &copy; 2026</p>
+      <p class="credit-line">
+        <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer">Built for Digital Heroes Training Task</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
+</body>
+</html>

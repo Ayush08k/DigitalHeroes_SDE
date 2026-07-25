@@ -1,0 +1,41 @@
+name: PagePulse Task A CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: Task_A/package.json
+
+      - name: Install Task A Dependencies
+        run: |
+          cd Task_A
+          npm ci
+
+      - name: Typecheck TypeScript
+        run: |
+          cd Task_A
+          npx tsc --noEmit
+
+      - name: Run Test Suite
+        run: |
+          cd Task_A
+          npm test

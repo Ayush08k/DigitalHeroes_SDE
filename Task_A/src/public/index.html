@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PagePulse - Production URL Audit Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="pulse-icon">⚡</div>
+        <div class="brand-text">
+          <h1>PagePulse</h1>
+          <span class="badge">Production v1.0</span>
+        </div>
+      </div>
+      <div class="nav-metrics">
+        <div class="status-indicator">
+          <span class="dot green"></span> System Operational
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section class="hero-section">
+        <h2>Production-Grade URL Audit Engine</h2>
+        <p class="subtitle">High-throughput analysis with SSRF protection, caching, rate limiting & real-time metrics.</p>
+        
+        <form id="auditForm" class="audit-form">
+          <div class="input-wrapper">
+            <span class="url-icon">🌐</span>
+            <input type="text" id="urlInput" placeholder="Enter target URL (e.g., https://example.com)" required />
+            <button type="submit" id="submitBtn">
+              <span class="btn-text">Audit URL</span>
+              <span class="spinner hidden"></span>
+            </button>
+          </div>
+          <div class="quick-links">
+            <span>Try quick sample:</span>
+            <button type="button" class="chip-btn" data-url="https://example.com">example.com</button>
+            <button type="button" class="chip-btn" data-url="https://httpbin.org/delay/1">httpbin.org</button>
+            <button type="button" class="chip-btn" data-url="https://github.com">github.com</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Alert Box -->
+      <div id="errorAlert" class="alert error hidden">
+        <div class="alert-content">
+          <strong id="errorTitle">Error</strong>
+          <p id="errorMessage"></p>
+          <span class="request-id" id="errorRequestId"></span>
+        </div>
+      </div>
+
+      <!-- Audit Results Dashboard -->
+      <section id="resultsSection" class="results-section hidden">
+        <div class="section-header">
+          <h3>Audit Overview</h3>
+          <div class="cache-badge-wrapper">
+            <span id="cacheBadge" class="cache-badge">CACHE MISS</span>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon">⏱️</div>
+            <div class="metric-info">
+              <span class="label">Response Time</span>
+              <span class="value" id="valResponseTime">-</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon">🏷️</div>
+            <div class="metric-info">
+              <span class="label">HTTP Status</span>
+              <span class="value" id="valStatusCode">-</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon">🔒</div>
+            <div class="metric-info">
+              <span class="label">SSL Security</span>
+              <span class="value" id="valSslSecure">-</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon">📦</div>
+            <div class="metric-info">
+              <span class="label">Content Size</span>
+              <span class="value" id="valContentSize">-</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security & Details Breakdown -->
+        <div class="details-grid">
+          <div class="detail-box">
+            <h4>Security Headers Audit</h4>
+            <ul class="security-list">
+              <li>
+                <span>Strict-Transport-Security (HSTS)</span>
+                <span id="flagHsts" class="status-pill">-</span>
+              </li>
+              <li>
+                <span>Content-Security-Policy (CSP)</span>
+                <span id="flagCsp" class="status-pill">-</span>
+              </li>
+              <li>
+                <span>X-Content-Type-Options</span>
+                <span id="flagXContentType" class="status-pill">-</span>
+              </li>
+              <li>
+                <span>X-Frame-Options</span>
+                <span id="flagXFrame" class="status-pill">-</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="detail-box">
+            <h4>Response Headers</h4>
+            <div class="raw-headers-box">
+              <pre id="headersJson">{}</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer with mandatory Credit Line -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>PagePulse Engine &copy; 2026. Production Grade Microservice.</p>
+        <p class="credit-line">
+          <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer">Built for Digital Heroes Training Task</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
