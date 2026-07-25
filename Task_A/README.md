@@ -1,10 +1,10 @@
 # Task A - Production-Grade PagePulse URL Audit Service
 
-A scalable, production-grade microservice for auditing websites and web applications with real-time metrics, SSRF protection, caching, token-bucket rate limiting, structured logging, request correlation tracing, and a responsive web UI.
+A scalable, production-grade microservice for auditing websites and web applications with real-time metrics, SSRF protection, caching, token-bucket rate limiting, structured logging, request correlation tracing, mobile-responsive web UI, and SOLID software design abstractions.
 
 ---
 
-## 🌟 Features & System Design
+## 🌟 Key Features & Architectural Capabilities
 
 1. **Input Validation & Resilience**:
    - Strict protocol enforcement (HTTP/HTTPS).
@@ -13,7 +13,7 @@ A scalable, production-grade microservice for auditing websites and web applicat
    - Semaphore concurrency limiter preventing resource exhaustion (`MAX_CONCURRENT_AUDITS`, default `5`).
 
 2. **Caching Strategy**:
-   - In-memory cache layer (`InMemoryCache`) with configurable TTL (`CACHE_TTL_SECONDS`).
+   - In-memory TTL cache layer (`InMemoryCache`) with configurable TTL (`CACHE_TTL_SECONDS`).
    - Returns explicit `X-Cache: HIT` or `X-Cache: MISS` headers.
 
 3. **Rate Limiting & Correlation Tracing**:
@@ -21,17 +21,20 @@ A scalable, production-grade microservice for auditing websites and web applicat
    - Headers exposed: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`.
    - Unique correlation Request ID (`X-Request-ID`) attached to every request and structured log entry (powered by Winston JSON logger).
 
-4. **Responsive Web UI Dashboard**:
-   - Built with modern HTML5/CSS3/JavaScript (Zero external frontend frameworks).
+4. **Mobile-Responsive Web UI Dashboard**:
+   - Built with modern HTML5/CSS3/JavaScript (Zero external heavy frontend frameworks).
    - Mobile-responsive layout optimized for all viewport sizes (Desktop, Tablet, Mobile).
    - Footer contains mandatory visible credit: **[Built for Digital Heroes Training Task](https://digitalheroesco.com)**.
 
-5. **CI/CD Pipeline**:
+5. **SOLID Principles Integration**:
+   - Strict adherence to SOLID design principles using interface abstractions (`ICacheProvider`, `IUrlValidator`, `IIpGuard`, `IAuditEngine`).
+
+6. **CI/CD Pipeline**:
    - Fully automated test workflow configured under `.github/workflows/ci.yml`.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start & Running Locally
 
 ### 1. Installation
 

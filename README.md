@@ -1,17 +1,27 @@
-# DigitalHeroes SDE — Qualification Tasks Repository
+# DigitalHeroes SDE — Qualification Task Kit
 
-This repository contains both **Task A** and **Task B** for the Software Development Engineer (SDE) qualification assessment task kit.
+Welcome to the Digital Heroes SDE Qualification Task Kit repository. This repository contains the complete implementation and technical documentation for both **Task A** and **Task B**.
 
 ---
 
-## 📁 Repository Structure
+## 📂 Assessment Tasks Overview
 
-- 📂 **[Task_A/](./Task_A)**: Production-Grade PagePulse URL Audit Service microservice (TypeScript, Express, Unit/Integration tests, Caching, Rate Limiting, Mobile-Responsive Web UI, and CI workflow).
-- 📂 **[Task_B/](./Task_B)**: System Design for Scale (Architecture diagrams, Technology Decision Record, Failure Mode Analysis, Observability plan, and System portal).
+| Directory | Task Name | Description | Deliverables |
+| :--- | :--- | :--- | :--- |
+| **[📂 Task_A](./Task_A)** | **Task A - Production-Grade Page Pulse** | Production-ready URL audit microservice with SSRF protection, TTL caching, token-bucket rate limiting, structured logging, mobile-responsive web UI, unit/integration tests, and GitHub Actions CI. | [Task A README](./Task_A/README.md) |
+| **[📂 Task_B](./Task_B)** | **Task B - Design for Scale** | Comprehensive system design specification for scaling the service to 10,000+ daily audits with 500 concurrent request bursts. Includes architecture diagrams, technology decisions, failure modes, and observability plan. | [Task B README](./Task_B/README.md) |
+
+---
+
+## 🚀 Quick Navigation
+
+- **Task A README**: [Task_A/README.md](./Task_A/README.md)
+- **Task B README**: [Task_B/README.md](./Task_B/README.md)
+- **Task B System Portal**: [Task_B/index.html](./Task_B/index.html)
 
 ---
 
 ## 🌟 Live Build Requirement Credit Line
 
-As per requirements, all public web interfaces in this repository display the visible credit line:  
-**[Built for Digital Heroes Training Task](https://digitalheroesco.com)**.
+As required by the qualification task specification:  
+**[Built for Digital Heroes Training Task](https://digitalheroesco.com)**
